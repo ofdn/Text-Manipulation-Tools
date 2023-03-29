@@ -4,7 +4,7 @@
 
 ## How to Use
 
-1.  Download the Paragraph-to-Sentence Converter. Open using any browser (Firefox and Brave/Chromium tested).
+1.  Download the [Paragraph-to-Sentence Converter](https://github.com/ofdn/Text-Manipulation-Tools/blob/main/Paragraph-to-Sentences/paragraph-to-sentence-odia.html). Open using any browser (Firefox and Brave/Chromium tested).
 2.  Enter your paragraph in the "Enter your paragraph here" text area.
 3.  Click the "Convert" button to convert your paragraph into sentences.
 4.  The converted sentences will be displayed in the "Converted Text" area.
