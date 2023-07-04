@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>OpenSpeaks Words: Prepare words for Lingua Libre</title>
+<!--
+
+OPENSPEAKS WORDS, v.1.0
+RELEASED 4 JULY 2023 (License Terms below)
+
+LICENSE TERMS & COPYRIGHT
+
+MIT License
+
+Copyright (c) 2023. Subhashish Panigrahi, O Foundation
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.-->
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        textarea {
+            width: 400px;
+            height: 250px;
+            resize: both;
+            overflow: auto;
+            margin-bottom: 10px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+
+        button {
+            margin-bottom: 10px;
+            padding: 8px 16px;
+        }
+    </style>
+    <script>
+        // JAVA SCRIPT BEGINS - Remove Punctuations begins
+
+        function removePunctuation() {
+            var inputText = document.getElementById("inputText").value;
+
+            // Remove Latin characters using a regular expression
+            var odiaText = inputText.replace(/[^\u0B00-\u0B7F\s’'-]/g, "");
+
+            var words = odiaText.split(/\s+/);
+            var processedWords = [];
+
+            // Iterate through each word and remove punctuation
+            for (var i = 0; i < words.length; i++) {
+                var word = words[i];
+
+                // Treat exceptional words with apostrophe or single quote followed by a space
+                if (/^(.*[’']\s.*)$/g.test(word)) {
+                    processedWords.push(word);
+                    continue;
+                }
+
+                // Remove punctuation at the beginning of a word, except for apostrophes and hyphen-apostrophe combinations
+                while (/^[^-\u0B00-\u0B7F’'][^\u0B00-\u0B7F]|^-(?![’'])/.test(word)) {
+                    word = word.substring(1);
+                }
+
+                // Remove punctuation at the end of a word, except for apostrophes or hyphen-apostrophe combinations
+                while (/[^\u0B00-\u0B7F’']$|-(?![’'])$/.test(word)) {
+                    word = word.slice(0, -1);
+                }
+
+                // Remove lines with only punctuation
+                if (/^[^\u0B00-\u0B7F\s’'-]+$/.test(word)) {
+                    continue;
+                }
+
+                // Remove empty lines
+                if (word.trim().length > 0) {
+                    processedWords.push(word);
+                }
+            }
+
+            var textWithLineBreaks = processedWords.join("\n");
+            document.getElementById("outputText").value = textWithLineBreaks;
+        }
+
+        // Remove Punctuations ends
+
+        function removeDuplicates() {
+            var outputText = document.getElementById("outputText").value;
+
+            // Remove duplicates
+            var uniqueWords = [...new Set(outputText.split("\n"))];
+
+            document.getElementById("outputText").value = uniqueWords.join("\n");
+        }
+
+        function sortAlphabetically() {
+            var outputText = document.getElementById("outputText").value;
+
+            // Sort alphabetically
+            var sortedWords = outputText.split("\n").sort();
+
+            document.getElementById("outputText").value = sortedWords.join("\n");
+        }
+
+        function replaceWithHash() {
+            var outputText = document.getElementById("outputText").value;
+
+            // Replace line breaks with #
+            var textWithHashes = outputText.replace(/\n+/g, "#").replace(/##+/g, "#");
+
+            document.getElementById("outputText").value = textWithHashes;
+        }
+
+        function copyText() {
+            var outputText = document.getElementById("outputText");
+            outputText.select();
+            document.execCommand("copy");
+        }
+
+        // JAVA SCRIPT ENDS
+    </script>
+</head>
+<body>
+<h1>OpenSpeaks Words: Prepare Words for Lingua Libre</h1>
+<div class="container">
+    <textarea id="inputText" rows="10" cols="50"></textarea>
+    <br>
+    <button onclick="removePunctuation()">1. Remove Punctuation &amp; Convert Words to New Line</button>
+    <button onclick="removeDuplicates()">2. Remove Duplicates</button>
+    <button onclick="sortAlphabetically()">3. Sort Alphabetically</button>
+    <button onclick="replaceWithHash()">4. Replace Lines with #</button>
+    <br>
+    <textarea id="outputText" rows="10" cols="50"></textarea>
+    <br>
+    <button onclick="copyText()">Copy Text</button>
+</div>
+<center><p><h4 style="text-align: center; width: 50%;">OpenSpeaks Words v.1.0 (MIT License)</h4>
+<h5 style="text-align: center; width: 50%;">© 2023. Subhashish Panigrahi. Last updated 4 July 2023.</h5></p>
+<p style="text-align: center; width: 50%;">OpenSpeaks Words tool helps you prepare a word list suitable for Lingua Libre in a step-by-step manner. Lingua Libre (https://lingualibre.org) is tool for recording pronunciations of words/phrases in any written language. Using this tool, you can remove puncuation marks, break sentences into new lines, remove duplicates, sort the words alphabetically, and replace words in new lines into words separated by the hash (#) sign. "Copy Text" to copy to Lingua Libre's RecordWizard tool for recording. P.S. This tool is tested for the Odia writing system and might need some tweaking for  other scripts.</p>
+</center>
+</body>
+</html>
