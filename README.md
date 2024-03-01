@@ -21,3 +21,55 @@ Simple tools to replace a piece of text with a desired function e.g. paragraph t
 -   The converter replaces all occurrences of the _Purnachheda_ (।), full stop (.) and semi-colon (;) with the Odia script's sentence-ending punctuation mark (।).
 -   The converter removes any inline citation marks that look like [୧] or [୨]. Useful if the text is copied from Wikipedia.
 -   The converted sentences may not always be perfect, so it is recommended to manually review and edit after conversion.
+
+## Other tools/scripts
+
+### UnicodeIt
+This script takes any Unicode character(s) as input and displays its Unicode code points. To be able to use this, you need to create a reusable function for this code block in `Zsh`, by defining a function in your Zsh configuration file (`~/.zshrc`) in a Unix-based computer (e.g. Linux or MacOS).
+
+1. Open Zsh Configuration File:
+
+Open your `Zsh` configuration file for editing. This file is typically located at `~/.zshrc`.
+
+`nano ~/.zshrc`
+
+
+2. Add **unicodeit** Function:
+
+Add the following function definition to the file. This function, named **unicodeit**, takes a string as an argument and prints the Unicode code points for each character in the string.
+
+`
+unicodeit() {
+    for c in $(echo "$1" | sed 's/./& /g'); do
+        printf "U+%04x %s\n" "'$c" "$c"
+    done
+}
+`
+3. Save and Exit:
+
+Save your changes and exit the text editor.
+
+Press **Ctrl + O** to write the changes.
+Press **Enter** (*return* in MacOS) to confirm the filename.
+Press **Ctrl + X** to exit the text editor.
+
+4. Source Zsh Configuration:
+
+To apply the changes immediately, source your Zsh configuration file:
+
+`source ~/.zshrc`
+
+
+. Use unicodeit Function:
+
+Now, you can use the unicodeit function in your terminal. Provide a string of characters as an argument to get the Unicode code points for each character.
+
+`unicodeit "apple"`
+
+This will output:
+`U+0061 a
+U+0070 p
+U+0070 p
+U+006c l
+U+0065 e`
+
