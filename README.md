@@ -45,6 +45,7 @@ unicodeit() {
     done
 }
 `
+
 3. Save and Exit:
 
 Save your changes and exit the text editor.
