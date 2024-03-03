@@ -57,7 +57,7 @@ done
 ## Notes:
 * If you encounter a "permission denied" error, ensure that the script is executable by running `chmod +x extract-bib-info.sh`.
 * This script assumes that the bibliographic information is spread across the first three pages. You can adjust the script based on your specific needs.
-* If your PDFs have images and the script isn't extracting the desired information, you may need to investigate OCR settings or use more advanced OCR tools.
+* If your PDFs contain scanned images (which are essentially image-only documents), standard text extraction tools like `pdftotext` may not work as expected. For scanned PDFs, you'll need to use OCR (Optical Character Recognition) to convert the images into machine-readable text.
 * This guide provides a basic setup for extracting text from PDFs. Depending on your PDFs' characteristics, you might need to customize the script further.
 
 # Maintainer
