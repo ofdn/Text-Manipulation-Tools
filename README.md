@@ -5,6 +5,9 @@ Simple tools to replace a piece of text with a desired function e.g. paragraph t
 
 *Paragraph-to-Sentence Converter* helps convert a paragraph into a series of sentences that end with a full stop, a question mark, an exclamation mark, or a semi-colon. This tool can be useful if you have a large block of text that you want to break down into smaller sentences, designed keeping in mind the [Mozilla Common Voice Sentence Collector](https://commonvoice.mozilla.org/sentence-collector/#/en).
 
+# Sort a bulleted list in ascending order of year
+This [https://github.com/ofdn/Text-Manipulation-Tools/blob/main/sort-odia-list.py](Python tool) sorts a list of text lines based on the years specified in Odia script, ensuring that the list is arranged in ascending order from the earliest to the latest year. It outputs the sorted list to a new file, preserving the original content.
+
 ### How to Use
 
 1.  Download the Paragraph-to-Sentence Converter. Open using any browser (Firefox and Brave/Chromium tested).
